@@ -1,0 +1,31 @@
+.main {
+  background-color: #f5f5f5;
+  padding-top: 64px;
+  padding-bottom: 24px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* padding: 6rem; */
+  /* min-height: 100vh; */
+}
+.search {
+  width: calc(90% - 48px);
+  display: flex;
+  margin: 0 auto; /* 페이지 가로 중앙 정렬 */
+  height: 20px;
+  border-radius: 36px;
+  border: none;
+  padding: 18px 24px;
+}
+.Home_Category {
+  margin: 24px auto 0 auto;
+  width: 90%;
+  font-size: 24px;
+  font-weight: 700;
+}
+.Home_Button {
+  margin: 24px auto 0 auto;
+  background-color: transparent;
+  border: none;
+}

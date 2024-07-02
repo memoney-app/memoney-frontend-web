@@ -1,0 +1,43 @@
+/* EventContainer.module.css */
+
+.Event_Container {
+  background-color: #ffffff;
+  width: calc(90% - 32px);
+  margin: 24px auto;
+  padding: 16px;
+  border-radius: 16px;
+  height: 78px;
+}
+
+.Event_Container_element {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.Event_Container_eventName {
+  margin-left: 4px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.income {
+  color: rgb(61, 90, 254);
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.outcome {
+  color: rgb(255, 110, 64);
+  margin-left: 24px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.Event_Container_money {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 400;
+}

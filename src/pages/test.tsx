@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./mainpage.module.css";
+import { useRouter } from "next/navigation";
+import styles from "../css/home.module.css";
+import { stackRouterPush, stackRouterBack } from "../utils/stackRouter";
+import Link from "next/link";
 
-const MainPage: React.FC = () => {
+export default function Test() {
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -18,6 +22,10 @@ const MainPage: React.FC = () => {
 
   return (
     <main className={styles.main}>
+      테스트 페이지
+      <Link href="/">first</Link>
+      <Link href="/main">main</Link>
+      <Link href="/test">test</Link>
       <input
         type="text"
         placeholder="Search"
@@ -28,6 +36,4 @@ const MainPage: React.FC = () => {
       />
     </main>
   );
-};
-
-export default MainPage;
+}
