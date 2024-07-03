@@ -2,7 +2,8 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import styles from "../css/EventContainer.module.css";
+import * as styles from "../css/EventContainer.css";
+import Link from "next/link";
 
 import Wedding from "/public/images/wedding.svg";
 import Birthday from "/public/images/birthday.svg";
@@ -55,7 +56,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
         <div className={styles.Event_Container_eventName}>{eventName}</div>
       </div>
       <div className={styles.Event_Container_money}>
-        <div className={styles.Event_Container_money_element}>
+        <div>
           <div className={styles.income}>
             들어온 금액: ₩ {formatCurrency(income)}
           </div>
@@ -63,7 +64,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
             나간 금액: ₩ {formatCurrency(outcome)}
           </div>
         </div>
-        더보기
+        <Link href={`/home/${eventName}`}>더보기</Link>
       </div>
     </div>
   );

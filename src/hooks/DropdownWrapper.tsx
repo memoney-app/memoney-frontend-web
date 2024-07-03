@@ -1,45 +1,58 @@
-import React, { useEffect, useRef } from "react";
-import cn from "clsx";
+import { useEffect, useRef, useState } from "react";
 
-interface DropdownWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  showUserDropdown: boolean;
-  setShowUserDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+interface DropdownOption {
+  value: string;
+  label: string;
 }
+const DropdownWrapper = (
+  initialState: string,
+  options: DropdownOption[]
+): {
+  showDropdown: boolean;
+  dropdownState: string;
+  dropdownRef: React.RefObject<HTMLDivElement>;
+  handleDropdownItemClick: (option: string) => void;
+  handleSortClick: () => void;
+  options: DropdownOption[];
+} => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdownState, setDropdownState] = useState(initialState);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-const DropdownWrapper: React.FC<DropdownWrapperProps> = ({
-  showUserDropdown,
-  setShowUserDropdown,
-  children,
-  className,
-  ...rest
-}) => {
-  const userDropdownRef = useRef<HTMLDivElement | null>(null);
+  const handleDropdownItemClick = (option: string) => {
+    setDropdownState(option);
+    setShowDropdown(false);
+  };
+
+  const handleSortClick = () => {
+    setShowDropdown((prev) => !prev);
+  };
 
   useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      // 클릭된 대상이 드롭다운 영역 내부에 속하지 않으면 드롭다운 닫기
+    const handleOutsideClick = (e: MouseEvent) => {
       if (
-        showUserDropdown &&
-        userDropdownRef.current &&
-        !userDropdownRef.current.contains(event.target as Node) &&
-        !event.target.closest("button")
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
       ) {
-        setShowUserDropdown(false);
+        setShowDropdown(false);
       }
     };
 
     document.addEventListener("mousedown", handleOutsideClick);
+
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [showUserDropdown, setShowUserDropdown]);
+  }, []);
 
-  return (
-    <div {...rest} className={cn(className)} ref={userDropdownRef}>
-      {children}
-    </div>
-  );
+  return {
+    showDropdown,
+    dropdownState,
+    dropdownRef,
+    handleDropdownItemClick,
+    handleSortClick,
+    options,
+  };
 };
 
 export default DropdownWrapper;

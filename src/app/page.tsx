@@ -1,16 +1,13 @@
 import Link from "next/link";
-import styles from "./page.module.css";
+import * as styles from "./page.css";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div>
-        <p>Get started by editing</p>
-        <br />
-        <Link href="/home">home</Link>
-        <Link href="/main">main</Link>
-        <Link href="/test">test</Link>
-      </div>
-    </main>
+    <div>
+      <p>Get started by editing</p>
+      <br />
+      <div>로고</div>
+      <Link href="/home">구글 로그인</Link>
+    </div>
   );
 }

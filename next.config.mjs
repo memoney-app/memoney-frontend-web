@@ -1,3 +1,5 @@
+import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
+
 // next.config.mjs
 const nextConfig = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -13,4 +15,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default createVanillaExtractPlugin()(nextConfig);
