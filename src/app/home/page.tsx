@@ -16,10 +16,19 @@ const dropdownOptions = [
   { value: "수입순", label: "수입순" },
 ];
 
+const initialEvents = [
+  { name: "결혼식", income: 1000000, outcome: 222200 },
+  { name: "장례식", income: 1000000, outcome: 222200 },
+  { name: "생일", income: 1000000, outcome: 222200 },
+  { name: "돌잔치", income: 1000000, outcome: 222200 },
+  { name: "세뱃돈", income: 1000000, outcome: 222200 },
+];
+
 const Home: React.FC = () => {
   // const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("카테고리별");
+  const [events, setEvents] = useState(initialEvents);
 
   const {
     showDropdown,
@@ -30,7 +39,14 @@ const Home: React.FC = () => {
   } = DropdownWrapper("금액순", dropdownOptions);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    const { value } = e.target;
+    setSearchTerm(value);
+
+    // 검색어에 따라 필터링된 이벤트 목록 업데이트
+    const filteredEvents = initialEvents.filter((event) =>
+      event.name.includes(value)
+    );
+    setEvents(filteredEvents);
   };
 
   const handleCategoryClick = (category: "카테고리별" | "사람별") => {
@@ -99,11 +115,14 @@ const Home: React.FC = () => {
           )}
         </div>
       </div>
-      <EventContainer eventName="결혼식" income={1000000} outcome={222200} />
-      <EventContainer eventName="장례식" income={1000000} outcome={222200} />
-      <EventContainer eventName="생일" income={1000000} outcome={222200} />
-      <EventContainer eventName="돌잔치" income={1000000} outcome={222200} />
-      <EventContainer eventName="세뱃돈" income={1000000} outcome={222200} />
+      {events.map((event, index) => (
+        <EventContainer
+          key={index}
+          eventName={event.name}
+          income={event.income}
+          outcome={event.outcome}
+        />
+      ))}
     </div>
   );
 };
