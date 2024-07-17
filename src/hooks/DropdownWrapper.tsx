@@ -8,14 +8,14 @@ const DropdownWrapper = (
   initialState: string,
   options: DropdownOption[]
 ): {
-  showDropdown: boolean;
+  showDropdown: boolean | null;
   dropdownState: string;
   dropdownRef: React.RefObject<HTMLDivElement>;
   handleDropdownItemClick: (option: string) => void;
   handleSortClick: () => void;
   options: DropdownOption[];
 } => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState<boolean | null>(null);
   const [dropdownState, setDropdownState] = useState(initialState);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
