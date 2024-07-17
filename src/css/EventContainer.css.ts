@@ -25,14 +25,17 @@ export const income = style({
   color: "rgb(61, 90, 254)",
   marginLeft: "8px",
   fontSize: "16px",
-  fontWeight: 500,
+  fontWeight: 700,
+  height: "20px",
 });
 
 export const outcome = style({
   color: "rgb(255, 110, 64)",
-  marginLeft: "24px",
+  marginLeft: "22px",
   fontSize: "16px",
-  fontWeight: 500,
+  fontWeight: 700,
+  height: "20px",
+  marginTop: "4px",
 });
 
 export const Event_Container_money = style({

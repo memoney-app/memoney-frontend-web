@@ -1,10 +1,29 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style, keyframes, globalStyle } from "@vanilla-extract/css";
+
+const fadeOut = keyframes({
+  "0%": {
+    opacity: 1,
+  },
+  "100%": {
+    opacity: 0,
+  },
+});
+
+const fadeIn = keyframes({
+  "0%": {
+    opacity: 0,
+  },
+  "100%": {
+    opacity: 1,
+  },
+});
 
 export const main = style({
   backgroundColor: "#f5f5f5",
   paddingTop: "64px",
   paddingBottom: "24px",
-  margin: 0,
+  margin: "0 auto", // Center the main container
+  maxWidth: "800px", // Limit the width to a typical mobile screen width
   minHeight: "100vh",
   overflow: "hidden",
 });
@@ -14,7 +33,7 @@ globalStyle("::-webkit-scrollbar", {
 export const search_container = style({
   width: "calc(90% - 48px)",
   display: "flex",
-  margin: "0 auto", // 페이지 가로 중앙 정렬
+  margin: "0 auto", // Center horizontally
   height: "20px",
   borderRadius: "36px",
   border: "none",
@@ -69,6 +88,7 @@ export const inactiveElement = style({
 
 export const main_select_element_list = style({
   marginLeft: "auto",
+  position: "relative",
 });
 export const Home_List_Dropdown = style({});
 export const main_sort_container = style({
@@ -82,18 +102,25 @@ export const dropdown_content = style({
   position: "absolute",
   width: "88px",
   height: "133px",
-  right: "5%",
   zIndex: 1000,
   padding: "16px",
   backgroundColor: "#ffffff",
-  // border: "1px solid #ccc",
   borderRadius: "8px",
-  // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  display: "flex", // 기본적으로 드롭다운은 숨겨진 상태
-  flexDirection: "column", // 세로 방향으로 배치
+  display: "flex",
+  flexDirection: "column",
   justifyContent: "space-between",
+  right: "-5%",
+  top: "130%",
+  boxShadow: "0px 0px 80px rgba(0, 0, 0, 0.1)", // 그림자 설정
+  backdropFilter: "blur(100px)", // 배경 블러 설정
+  opacity: 0,
 });
-
+export const showDropdown = style({
+  animation: `${fadeIn} 0.5s forwards`,
+});
+export const hideDropdown = style({
+  animation: `${fadeOut} 0.5s forwards`,
+});
 export const dropdown_item = style({
   color: "#000000",
   fontSize: "16px",
