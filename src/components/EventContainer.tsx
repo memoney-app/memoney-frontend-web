@@ -64,7 +64,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
             나간 금액: ₩ {formatCurrency(outcome)}
           </div>
         </div>
-        <Link href={`/home/${eventName}`}>더보기</Link>
+        <Link href={`/home/category/${eventName}`}>더보기</Link>
       </div>
     </div>
   );
