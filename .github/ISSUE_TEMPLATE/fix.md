@@ -1,13 +1,13 @@
 ---
-name: Feature
-about: 새로운 기능 만들기
-title: "[FE][FEAT] 메인내용"
+name: Fix
+about: 기능이나 UI에 문제가 생겨 코드를 수정
+title: "[FE][BUG]"
 labels: ''
 assignees: ''
 
 ---
 
-## 💻 Feature 설명
+## 💻 BugFix 설명
 > 이 내용을 지우고 개발할 내용과 목표를 작성해주세요.
 <br>
 

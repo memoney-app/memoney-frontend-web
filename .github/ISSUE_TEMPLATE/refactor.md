@@ -1,13 +1,13 @@
 ---
-name: Feature
-about: 새로운 기능 만들기
-title: "[FE][FEAT] 메인내용"
+name: Refactor
+about: 기능엔 변함없지만 코드를 수정
+title: "[FE][REFACTOR]"
 labels: ''
 assignees: ''
 
 ---
 
-## 💻 Feature 설명
+## 💻 Refactoring 설명
 > 이 내용을 지우고 개발할 내용과 목표를 작성해주세요.
 <br>
 
