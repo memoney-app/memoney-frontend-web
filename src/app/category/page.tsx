@@ -4,16 +4,16 @@ import React, { useState } from "react";
 import * as styles from "../../css/home.css";
 import EventContainer from "@/components/EventContainer";
 import DropdownWrapper from "../../hooks/DropdownWrapper";
-import Header from "@/components/Header";
+import LogoHeader from "@/components/LogoHeader";
 import BottomNav from "@/components/BottomNav";
 import SearchBar from "@/components/SearchBar";
 import SelectButton from "@/components/SelectButton";
 import SortDropdown from "@/components/SortDropdown";
 import { dropdownOptions } from "@/utils/dropdownOptions";
 import { sortEvents } from "@/utils/sortEvents";
-import { Event } from "@/types/event";
+import { Event, CategoryEvent } from "@/types/Event";
 
-const initialEvents: Event[] = [
+const initialEvents: CategoryEvent[] = [
   { name: "결혼식", date: "2023-07-01", income: 1000000, outcome: 222200 },
   { name: "장례식", date: "2023-06-15", income: 900000, outcome: 300000 },
   { name: "생일", date: "2023-05-20", income: 800000, outcome: 150000 },
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="main">
-      <Header />
+      <LogoHeader />
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
 
       <div className={styles.Home_Category}>카테고리</div>
