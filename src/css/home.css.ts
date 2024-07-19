@@ -30,23 +30,6 @@ globalStyle(".main", {
 globalStyle("::-webkit-scrollbar", {
   display: "none",
 });
-export const search_container = style({
-  width: "calc(90% - 48px)",
-  display: "flex",
-  margin: "0 auto", // Center horizontally
-  height: "20px",
-  borderRadius: "36px",
-  border: "none",
-  padding: "18px 24px",
-  fontSize: "16px",
-  backgroundColor: "#ffffff",
-});
-export const search = style({
-  border: "none",
-  outline: "none",
-  fontSize: "16px",
-  marginLeft: "14px",
-});
 
 export const Home_Category = style({
   margin: "24px auto 0 auto",
@@ -113,7 +96,6 @@ export const dropdown_content = style({
   top: "130%",
   boxShadow: "0px 0px 80px rgba(0, 0, 0, 0.1)", // 그림자 설정
   backdropFilter: "blur(100px)", // 배경 블러 설정
-  opacity: 0,
 });
 export const showDropdown = style({
   animation: `${fadeIn} 0.5s forwards`,
