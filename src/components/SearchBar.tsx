@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import * as styles from "../css/SearchBar.css";
 import Search from "/public/images/Search.svg";
-
-interface Event {
-  name: string;
-  date: string;
-  income: number;
-  outcome: number;
-}
+import { Event } from "@/types/event";
 
 interface SearchBarProps {
   onSearch: (filteredEvents: Event[]) => void;
