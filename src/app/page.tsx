@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
+    <div className="main">
       <p>Get started by editing</p>
       <br />
       <div>로고</div>

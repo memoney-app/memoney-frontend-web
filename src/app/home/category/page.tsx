@@ -11,6 +11,13 @@ import DropdownWrapper from "../../../hooks/DropdownWrapper";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 
+interface Event {
+  name: string;
+  date: string;
+  income: number;
+  outcome: number;
+}
+
 const dropdownOptions = [
   { value: "금액순", label: "금액순" },
   { value: "최신순", label: "최신순" },
@@ -18,12 +25,12 @@ const dropdownOptions = [
   { value: "수입순", label: "수입순" },
 ];
 
-const initialEvents = [
-  { name: "결혼식", income: 1000000, outcome: 222200 },
-  { name: "장례식", income: 1000000, outcome: 222200 },
-  { name: "생일", income: 1000000, outcome: 222200 },
-  { name: "돌잔치", income: 1000000, outcome: 222200 },
-  { name: "세뱃돈", income: 1000000, outcome: 222200 },
+const initialEvents: Event[] = [
+  { name: "결혼식", date: "2023-07-01", income: 1000000, outcome: 222200 },
+  { name: "장례식", date: "2023-06-15", income: 900000, outcome: 300000 },
+  { name: "생일", date: "2023-05-20", income: 800000, outcome: 150000 },
+  { name: "돌잔치", date: "2023-07-10", income: 1200000, outcome: 400000 },
+  { name: "세뱃돈", date: "2023-01-01", income: 2000000, outcome: 500000 },
 ];
 
 const Home: React.FC = () => {
@@ -55,8 +62,35 @@ const Home: React.FC = () => {
     setSelectedCategory(category);
   };
 
+  const sortEvents = (events: Event[], sortType: string): Event[] => {
+    let sortedEvents = [...events];
+    switch (sortType) {
+      case "금액순":
+        sortedEvents.sort(
+          (a, b) => b.income + b.outcome - (a.income + a.outcome)
+        );
+        break;
+      case "최신순":
+        sortedEvents.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+        break;
+      case "지출순":
+        sortedEvents.sort((a, b) => b.outcome - a.outcome);
+        break;
+      case "수입순":
+        sortedEvents.sort((a, b) => b.income - a.income);
+        break;
+      default:
+        break;
+    }
+    return sortedEvents;
+  };
+
+  const sortedEvents = sortEvents(events, dropdownState);
+
   return (
-    <div className={styles.main}>
+    <div className="main">
       <Header />
       <div className={styles.search_container}>
         <Search />
@@ -124,7 +158,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      {events.map((event, index) => (
+      {sortedEvents.map((event, index) => (
         <EventContainer
           key={index}
           eventName={event.name}
