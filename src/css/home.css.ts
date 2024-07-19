@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-export const Home_Category = style({
+export const Home_Title = style({
   margin: "24px auto 0 auto",
   width: "90%",
   fontSize: "24px",

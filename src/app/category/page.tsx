@@ -46,7 +46,7 @@ const Home: React.FC = () => {
       <LogoHeader />
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
 
-      <div className={styles.Home_Category}>카테고리</div>
+      <div className={styles.Home_Title}>{selectedCategory}</div>
       <div className={styles.main_select_container}>
         <SelectButton
           text="카테고리별"

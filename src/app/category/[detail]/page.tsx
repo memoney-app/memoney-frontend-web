@@ -13,6 +13,11 @@ import { dropdownOptions } from "@/utils/dropdownOptions";
 
 import * as styles from "../../../css/CategoryDetail.css";
 import { sortEvents } from "@/utils/sortEvents";
+import Wedding from "/public/images/wedding.svg";
+import Birthday from "/public/images/birthday.svg";
+import FBP from "/public/images/FBP.svg";
+import NewYear from "/public/images/NewYear.svg";
+import Funeral from "/public/images/funeral.svg";
 
 const initialEvents: PeopleEvent[] = [
   {
@@ -66,6 +71,22 @@ export default function Category(props: any) {
     setCurrentCategory(decodedCategory);
   }, [pathname]);
 
+  const renderImage = () => {
+    switch (currentCategory) {
+      case "결혼식":
+        return <Wedding />;
+      case "장례식":
+        return <Funeral />;
+      case "생일":
+        return <Birthday />;
+      case "돌잔치":
+        return <FBP />;
+      case "세뱃돈":
+        return <NewYear />;
+      default:
+        return null; // 기본 이미지가 필요하면 여기에 추가
+    }
+  };
   const {
     showDropdown,
     dropdownVisible,
@@ -77,7 +98,6 @@ export default function Category(props: any) {
 
   const handleCategoryClick = (category: "전체" | "들어온돈" | "나간돈") => {
     setSelectedCategory(category);
-    console.log(selectedCategory);
   };
 
   const sortedEvents = sortEvents(events, dropdownState);
@@ -85,7 +105,12 @@ export default function Category(props: any) {
   return (
     <div className="main">
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
-      <div className={styles.Home_Category}>{currentCategory}</div>
+
+      <div className={styles.Detail_Title}>
+        <div className={styles.Detail_Title_Image}>{renderImage()}</div>
+
+        {currentCategory}
+      </div>
       <div className={styles.main_select_container}>
         <SelectButton
           text="전체"
