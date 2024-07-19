@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-// import { useRouter } from "next/router";
-import * as styles from "../../../css/home.css";
+import React, { useState, useEffect } from "react";
+import * as styles from "../../css/home.css";
 import EventContainer from "@/components/EventContainer";
-import Search from "/public/images/Search.svg";
 import Sort from "/public/images/Sort.svg";
 import Rectangle from "/public/images/Rectangle.svg";
-import DropdownWrapper from "../../../hooks/DropdownWrapper";
+import DropdownWrapper from "../../hooks/DropdownWrapper";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
+import SearchBar from "@/components/SearchBar";
 
 interface Event {
   name: string;
@@ -34,29 +33,17 @@ const initialEvents: Event[] = [
 ];
 
 const Home: React.FC = () => {
-  // const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("카테고리별");
   const [events, setEvents] = useState(initialEvents);
 
   const {
     showDropdown,
+    dropdownVisible,
     dropdownState,
     dropdownRef,
     handleDropdownItemClick,
     handleSortClick,
   } = DropdownWrapper("금액순", dropdownOptions);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchTerm(value);
-
-    // 검색어에 따라 필터링된 이벤트 목록 업데이트
-    const filteredEvents = initialEvents.filter((event) =>
-      event.name.includes(value)
-    );
-    setEvents(filteredEvents);
-  };
 
   const handleCategoryClick = (category: "카테고리별" | "사람별") => {
     setSelectedCategory(category);
@@ -92,7 +79,8 @@ const Home: React.FC = () => {
   return (
     <div className="main">
       <Header />
-      <div className={styles.search_container}>
+      <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
+      {/* <div className={styles.search_container}>
         <Search />
         <input
           type="text"
@@ -101,7 +89,7 @@ const Home: React.FC = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-      </div>
+      </div> */}
 
       <div className={styles.Home_Category}>카테고리</div>
       <div className={styles.main_select_container}>
@@ -133,29 +121,27 @@ const Home: React.FC = () => {
             </div>
             <Rectangle className={styles.rectangle} />
           </div>
-          <div
-            className={`${styles.dropdown_content} ${
-              showDropdown !== null
-                ? showDropdown
-                  ? styles.showDropdown
-                  : styles.hideDropdown
-                : ""
-            }`}
-          >
-            {dropdownOptions.map((option) => (
-              <div
-                key={option.value}
-                className={`${styles.dropdown_item} ${
-                  option.value === dropdownState
-                    ? styles.dropdown_selectedItem
-                    : ""
-                }`}
-                onClick={() => handleDropdownItemClick(option.value)}
-              >
-                {option.label}
-              </div>
-            ))}
-          </div>
+          {dropdownVisible && (
+            <div
+              className={`${styles.dropdown_content} ${
+                showDropdown ? styles.showDropdown : styles.hideDropdown
+              }`}
+            >
+              {dropdownOptions.map((option) => (
+                <div
+                  key={option.value}
+                  className={`${styles.dropdown_item} ${
+                    option.value === dropdownState
+                      ? styles.dropdown_selectedItem
+                      : ""
+                  }`}
+                  onClick={() => handleDropdownItemClick(option.value)}
+                >
+                  {option.label}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       {sortedEvents.map((event, index) => (
