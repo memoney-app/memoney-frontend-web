@@ -9,8 +9,8 @@ import Funeral from "/public/images/funeral.svg";
 
 interface EventContainerProps {
   eventName: string;
-  income: number;
-  outcome: number;
+  income?: number;
+  outcome?: number;
 }
 
 const EventContainer: React.FC<EventContainerProps> = ({
@@ -54,12 +54,16 @@ const EventContainer: React.FC<EventContainerProps> = ({
       </div>
       <div className={styles.Event_Container_money}>
         <div>
-          <div className={styles.income}>
-            들어온 금액: ₩ {formatCurrency(income)}
-          </div>
-          <div className={styles.outcome}>
-            나간 금액: ₩ {formatCurrency(outcome)}
-          </div>
+          {income !== undefined && (
+            <div className={styles.income}>
+              들어온 금액: ₩ {formatCurrency(income)}
+            </div>
+          )}
+          {outcome !== undefined && (
+            <div className={styles.outcome}>
+              나간 금액: ₩ {formatCurrency(outcome)}
+            </div>
+          )}
         </div>
         <div>더보기</div>
       </div>

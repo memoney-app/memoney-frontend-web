@@ -102,6 +102,12 @@ export default function Category(props: any) {
 
   const sortedEvents = sortEvents(events, dropdownState);
 
+  const filteredEvents = sortedEvents.filter((event) => {
+    if (selectedCategory === "들어온돈") return event.income > 0;
+    if (selectedCategory === "나간돈") return event.outcome > 0;
+    return true;
+  });
+
   return (
     <div className="main">
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
@@ -137,12 +143,12 @@ export default function Category(props: any) {
           options={dropdownOptions}
         />
       </div>
-      {sortedEvents.map((event, index) => (
+      {filteredEvents.map((event, index) => (
         <EventContainer
           key={index}
           eventName={event.name}
-          income={event.income}
-          outcome={event.outcome}
+          income={selectedCategory === "나간돈" ? undefined : event.income}
+          outcome={selectedCategory === "들어온돈" ? undefined : event.outcome}
         />
       ))}
       <BottomNav />
