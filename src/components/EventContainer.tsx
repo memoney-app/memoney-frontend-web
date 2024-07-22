@@ -1,10 +1,6 @@
-// EventContainer.tsx
-
 import React from "react";
 import { useRouter } from "next/navigation";
 import * as styles from "../css/EventContainer.css";
-import Link from "next/link";
-
 import Wedding from "/public/images/wedding.svg";
 import Birthday from "/public/images/birthday.svg";
 import FBP from "/public/images/FBP.svg";
@@ -13,8 +9,8 @@ import Funeral from "/public/images/funeral.svg";
 
 interface EventContainerProps {
   eventName: string;
-  income: number;
-  outcome: number;
+  income?: number;
+  outcome?: number;
 }
 
 const EventContainer: React.FC<EventContainerProps> = ({
@@ -25,7 +21,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/");
+    router.push(`/category/${eventName}`);
   };
 
   // 금액을 3자리마다 콤마(,) 표시하는 함수
@@ -49,22 +45,27 @@ const EventContainer: React.FC<EventContainerProps> = ({
         return null; // 기본 이미지가 필요하면 여기에 추가
     }
   };
+
   return (
-    <div className={styles.Event_Container}>
+    <div className={styles.Event_Container} onClick={handleClick}>
       <div className={styles.Event_Container_element}>
         {renderImage()}
         <div className={styles.Event_Container_eventName}>{eventName}</div>
       </div>
       <div className={styles.Event_Container_money}>
         <div>
-          <div className={styles.income}>
-            들어온 금액: ₩ {formatCurrency(income)}
-          </div>
-          <div className={styles.outcome}>
-            나간 금액: ₩ {formatCurrency(outcome)}
-          </div>
+          {income !== undefined && (
+            <div className={styles.income}>
+              들어온 금액: ₩ {formatCurrency(income)}
+            </div>
+          )}
+          {outcome !== undefined && (
+            <div className={styles.outcome}>
+              나간 금액: ₩ {formatCurrency(outcome)}
+            </div>
+          )}
         </div>
-        <Link href={`/home/category/${eventName}`}>더보기</Link>
+        <div>더보기</div>
       </div>
     </div>
   );

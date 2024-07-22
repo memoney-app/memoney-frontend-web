@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as styles from "../css/SearchBar.css";
 import Search from "/public/images/Search.svg";
-import { Event } from "@/types/event";
+import { Event } from "@/types/Event"; // 유니온 타입을 import
 
 interface SearchBarProps {
   onSearch: (filteredEvents: Event[]) => void;
@@ -20,6 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, initialEvents }) => {
     );
     onSearch(filteredEvents);
   };
+
   return (
     <div className={styles.search_container}>
       <Search />

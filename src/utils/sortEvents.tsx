@@ -1,4 +1,4 @@
-import { Event } from "@/types/event";
+import { Event } from "@/types/Event";
 
 export const sortEvents = (events: Event[], sortType: string): Event[] => {
   let sortedEvents = [...events];
