@@ -18,6 +18,7 @@ import Birthday from "/public/images/birthday.svg";
 import FBP from "/public/images/FBP.svg";
 import NewYear from "/public/images/NewYear.svg";
 import Funeral from "/public/images/funeral.svg";
+import DetailHeader from "@/components/DetailHeader";
 
 const initialEvents: PeopleEvent[] = [
   {
@@ -110,6 +111,7 @@ export default function Category(props: any) {
 
   return (
     <div className="main">
+      <DetailHeader text={currentCategory} />
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
 
       <div className={styles.Detail_Title}>
