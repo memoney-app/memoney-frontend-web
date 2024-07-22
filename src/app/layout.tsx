@@ -1,5 +1,6 @@
+"use client";
 import localFont from "next/font/local";
-import type { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 import "./globals.css";
 
 const suit = localFont({
@@ -60,8 +61,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={suit.className}>{children}</body>
-    </html>
+    <RecoilRoot>
+      <html lang="ko">
+        <body className={suit.className}>{children}</body>
+      </html>
+    </RecoilRoot>
   );
 }
