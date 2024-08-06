@@ -12,6 +12,7 @@ import SortDropdown from "@/components/SortDropdown";
 import { dropdownOptions } from "@/utils/dropdownOptions";
 import { sortEvents } from "@/utils/sortEvents";
 import { Event, CategoryEvent } from "@/types/Event";
+import GraphComponent from "@/components/GraphComponent";
 
 const initialEvents: CategoryEvent[] = [
   { name: "결혼식", date: "2023-07-01", income: 1000000, outcome: 222200 },
@@ -45,7 +46,7 @@ const Home: React.FC = () => {
     <div className="main">
       <LogoHeader />
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
-
+      <GraphComponent data={initialEvents} />
       <div className={styles.Home_Title}>{selectedCategory}</div>
       <div className={styles.main_select_container}>
         <SelectButton
