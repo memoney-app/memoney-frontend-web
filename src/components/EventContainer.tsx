@@ -11,12 +11,14 @@ interface EventContainerProps {
   eventName: string;
   income?: number;
   outcome?: number;
+  relation?: string;
 }
 
 const EventContainer: React.FC<EventContainerProps> = ({
   eventName,
   income,
   outcome,
+  relation,
 }) => {
   const router = useRouter();
 
@@ -42,7 +44,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
       case "세뱃돈":
         return <NewYear />;
       default:
-        return null; // 기본 이미지가 필요하면 여기에 추가
+        return <div className={styles.Event_norender}></div>; // 기본 이미지가 필요하면 여기에 추가
     }
   };
 
@@ -51,6 +53,9 @@ const EventContainer: React.FC<EventContainerProps> = ({
       <div className={styles.Event_Container_element}>
         {renderImage()}
         <div className={styles.Event_Container_eventName}>{eventName}</div>
+        {relation && (
+          <div className={styles.Event_Container_relation}>{relation}</div>
+        )}
       </div>
       <div className={styles.Event_Container_money}>
         <div>

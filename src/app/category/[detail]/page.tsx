@@ -22,35 +22,35 @@ import DetailHeader from "@/components/DetailHeader";
 
 const initialEvents: PeopleEvent[] = [
   {
-    name: "결혼식",
+    name: "김규원",
     date: "2023-07-01",
     income: 1000000,
     outcome: 222200,
     relation: "친구",
   },
   {
-    name: "장례식",
+    name: "전미진",
     date: "2023-06-15",
     income: 900000,
     outcome: 300000,
     relation: "부모",
   },
   {
-    name: "생일",
+    name: "박승원",
     date: "2023-05-20",
     income: 800000,
     outcome: 150000,
     relation: "친적",
   },
   {
-    name: "돌잔치",
+    name: "김규투",
     date: "2023-07-10",
     income: 1200000,
     outcome: 400000,
     relation: "직장동료",
   },
   {
-    name: "세뱃돈",
+    name: "박승투",
     date: "2023-01-01",
     income: 2000000,
     outcome: 500000,
@@ -151,6 +151,7 @@ export default function Category(props: any) {
           eventName={event.name}
           income={selectedCategory === "나간돈" ? undefined : event.income}
           outcome={selectedCategory === "들어온돈" ? undefined : event.outcome}
+          relation={event.relation}
         />
       ))}
       <BottomNav />
