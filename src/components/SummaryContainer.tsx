@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import * as styles from "../css/EventContainer.css";
-import Wedding from "/public/images/wedding.svg";
-import Birthday from "/public/images/birthday.svg";
-import FBP from "/public/images/FBP.svg";
-import NewYear from "/public/images/NewYear.svg";
-import Funeral from "/public/images/funeral.svg";
+import * as styles from "../css/SummaryContainer.css";
 import classNames from "classnames";
 
-interface EventContainerProps {
-  eventName: string;
+interface SummaryContainerProps {
   income: number;
   outcome: number;
-  relation?: string;
   selectedCategory: string;
 }
 
-const EventContainer: React.FC<EventContainerProps> = ({
-  eventName,
+const SummaryContainer: React.FC<SummaryContainerProps> = ({
   income,
   outcome,
-  relation,
   selectedCategory,
 }) => {
   const router = useRouter();
   const [prevCategory, setPrevClass] = useState("전체");
   const [incomeClass, setIncomeClass] = useState("income");
   const [outcomeClass, setOutcomeClass] = useState(
-    classNames(styles.Event_outcome)
+    classNames(styles.Summary_outcome)
   );
+
   const getClassNames = () => {
     setIncomeClass(
       classNames("income", {
@@ -44,7 +36,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
     );
 
     setOutcomeClass(
-      classNames(styles.Event_outcome, {
+      classNames(styles.Summary_outcome, {
         sizeDown_Animation:
           prevCategory === "전체" && selectedCategory === "받은돈",
         [classNames("sizeUp_Animation", "outcome_alone")]:
@@ -63,61 +55,30 @@ const EventContainer: React.FC<EventContainerProps> = ({
   useEffect(() => {
     setPrevClass(selectedCategory);
     getClassNames();
+    console.log("prevCategory: ", prevCategory);
+    console.log("selectedCategory: ", selectedCategory);
   }, [selectedCategory]);
-
-  const handleClick = () => {
-    router.push(`/category/${eventName}`);
-  };
 
   // 금액을 3자리마다 콤마(,) 표시하는 함수
   const formatCurrency = (amount: number) => {
     return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  const renderImage = () => {
-    switch (eventName) {
-      case "결혼식":
-        return <Wedding />;
-      case "장례식":
-        return <Funeral />;
-      case "생일":
-        return <Birthday />;
-      case "돌잔치":
-        return <FBP />;
-      case "세뱃돈":
-        return <NewYear />;
-      default:
-        return <div className={styles.Event_norender}></div>; // 기본 이미지가 필요하면 여기에 추가
-    }
-  };
-
-  // const outcomeClass =
-  //   income === undefined
-  //     ? styles.Event_outcome
-  //     : `${styles.Event_outcome} outcome_alone`;
-
   return (
-    <div className="Event_Container" onClick={handleClick}>
-      <div className={styles.Event_Container_element}>
-        {renderImage()}
-        <div className={styles.Event_Container_eventName}>{eventName}</div>
-        {relation && (
-          <div className={styles.Event_Container_relation}>{relation}</div>
-        )}
-      </div>
-      <div className={styles.Event_Container_money}>
+    <div className="Event_Container">
+      <div className={styles.Summary_Container_text}>요약</div>
+      <div className={styles.Summary_Container_money}>
         <div className={prevCategory !== "전체" ? "overlapping_text" : ""}>
           <div className={incomeClass}>
-            들어온 금액: ₩ {formatCurrency(income)}
+            받은 돈 합계: ₩ {formatCurrency(income)}
           </div>
           <div className={outcomeClass}>
-            나간 금액: ₩ {formatCurrency(outcome)}
+            나간 돈 합계: ₩ {formatCurrency(outcome)}
           </div>
         </div>
-        <div>더보기</div>
       </div>
     </div>
   );
 };
 
-export default EventContainer;
+export default SummaryContainer;

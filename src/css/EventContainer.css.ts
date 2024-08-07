@@ -1,15 +1,75 @@
-import { style } from "@vanilla-extract/css";
-import exp from "constants";
+import { style, globalStyle, keyframes } from "@vanilla-extract/css";
 
-export const Event_Container = style({
+export const fadeIn = keyframes({
+  "0%": { opacity: 0 },
+  "100%": { opacity: 1 },
+});
+
+export const fadeOut = keyframes({
+  from: { opacity: 1 },
+  to: { opacity: 0 },
+});
+
+export const upsizeFix = keyframes({
+  "0%": { position: "absolute" },
+  "100%": { position: "absolute" },
+});
+
+export const downsizeFix = keyframes({
+  from: { position: "absolute" },
+  to: { position: "absolute" },
+});
+
+export const sizeUp = keyframes({
+  from: { height: "0px" },
+  to: { height: "20px" },
+});
+
+export const sizeDown = keyframes({
+  from: { height: "20px" },
+  to: { height: "0px", position: "absolute" },
+});
+
+globalStyle(".fadeIn_Animation", {
+  animation: `${fadeIn} 0.5s forwards, ${upsizeFix} 0.5s forwards`,
+});
+
+globalStyle(".fadeOut_Animation", {
+  animation: `${fadeOut} 0.5s forwards, ${downsizeFix} 0.5s forwards`,
+});
+
+globalStyle(".sizeUp_Animation", {
+  animation: `${sizeUp} 0.5s forwards, ${fadeIn} 0.5s forwards`,
+});
+
+globalStyle(".sizeDown_Animation", {
+  animation: `${sizeDown} 0.5s forwards, ${fadeOut} 0.25s forwards`,
+});
+
+globalStyle(".Event_Container", {
   backgroundColor: "#ffffff",
   width: "calc(90% - 32px)",
   margin: "24px auto",
   padding: "16px",
   borderRadius: "16px",
-  height: "78px",
 });
 
+globalStyle(".income", {
+  color: "rgb(61, 90, 254)",
+  marginLeft: "8px",
+  fontSize: "16px",
+  fontWeight: 700,
+});
+
+globalStyle(".outcome_alone", {
+  marginTop: "4px",
+});
+
+globalStyle(".overlapping_text", {
+  height: "20px",
+  overflow: "visible",
+  whiteSpace: "nowrap",
+});
 export const Event_Container_element = style({
   display: "flex",
   alignItems: "center",
@@ -22,21 +82,11 @@ export const Event_Container_eventName = style({
   fontWeight: 700,
 });
 
-export const income = style({
-  color: "rgb(61, 90, 254)",
-  marginLeft: "8px",
-  fontSize: "16px",
-  fontWeight: 700,
-  height: "20px",
-});
-
-export const outcome = style({
+export const Event_outcome = style({
   color: "rgb(255, 110, 64)",
   marginLeft: "22px",
   fontSize: "16px",
   fontWeight: 700,
-  height: "20px",
-  marginTop: "4px",
 });
 
 export const Event_Container_money = style({
