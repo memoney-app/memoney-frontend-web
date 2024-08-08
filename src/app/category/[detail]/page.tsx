@@ -7,6 +7,7 @@ import { Event, PeopleEvent } from "@/types/Event";
 import SelectButton from "@/components/SelectButton";
 import SortDropdown from "@/components/SortDropdown";
 import EventContainer from "@/components/EventContainer";
+import SummaryContainer from "@/components/SummaryContainer";
 import BottomNav from "@/components/BottomNav";
 import DropdownWrapper from "@/hooks/DropdownWrapper";
 import { dropdownOptions } from "@/utils/dropdownOptions";
@@ -38,7 +39,7 @@ const initialEvents: PeopleEvent[] = [
   {
     name: "박승원",
     date: "2023-05-20",
-    income: 800000,
+    income: 0,
     outcome: 150000,
     relation: "친적",
   },
@@ -97,17 +98,26 @@ export default function Category(props: any) {
     handleSortClick,
   } = DropdownWrapper("금액순", dropdownOptions);
 
-  const handleCategoryClick = (category: "전체" | "들어온돈" | "나간돈") => {
+  const handleCategoryClick = (category: "전체" | "받은돈" | "나간돈") => {
     setSelectedCategory(category);
   };
 
   const sortedEvents = sortEvents(events, dropdownState);
 
   const filteredEvents = sortedEvents.filter((event) => {
-    if (selectedCategory === "들어온돈") return event.income > 0;
+    if (selectedCategory === "받은돈") return event.income > 0;
     if (selectedCategory === "나간돈") return event.outcome > 0;
     return true;
   });
+
+  const totalIncome = filteredEvents.reduce(
+    (sum, event) => sum + (event.income || 0),
+    0
+  );
+  const totalOutcome = filteredEvents.reduce(
+    (sum, event) => sum + (event.outcome || 0),
+    0
+  );
 
   return (
     <div className="main">
@@ -126,9 +136,9 @@ export default function Category(props: any) {
           onClick={() => handleCategoryClick("전체")}
         />
         <SelectButton
-          text="들어온돈"
-          isSelected={selectedCategory === "들어온돈"}
-          onClick={() => handleCategoryClick("들어온돈")}
+          text="받은돈"
+          isSelected={selectedCategory === "받은돈"}
+          onClick={() => handleCategoryClick("받은돈")}
         />
         <SelectButton
           text="나간돈"
@@ -145,12 +155,18 @@ export default function Category(props: any) {
           options={dropdownOptions}
         />
       </div>
+      <SummaryContainer
+        income={totalIncome}
+        outcome={totalOutcome}
+        selectedCategory={selectedCategory}
+      />
       {filteredEvents.map((event, index) => (
         <EventContainer
           key={index}
           eventName={event.name}
-          income={selectedCategory === "나간돈" ? undefined : event.income}
-          outcome={selectedCategory === "들어온돈" ? undefined : event.outcome}
+          income={event.income}
+          outcome={event.outcome}
+          selectedCategory={selectedCategory}
           relation={event.relation}
         />
       ))}
