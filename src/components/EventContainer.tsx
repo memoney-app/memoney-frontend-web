@@ -55,7 +55,9 @@ const EventContainer: React.FC<EventContainerProps> = ({
           prevCategory === "받은돈" && selectedCategory === "나간돈",
         outcome_alone:
           (prevCategory === "전체" && selectedCategory === "전체") ||
-          (prevCategory === "나간돈" && selectedCategory === "전체"),
+          (prevCategory === "나간돈" && selectedCategory === "전체") ||
+          selectedCategory === "카테고리별" ||
+          selectedCategory === "사람별",
       })
     );
   };
@@ -63,6 +65,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
   useEffect(() => {
     setPrevClass(selectedCategory);
     getClassNames();
+    console.log(selectedCategory);
   }, [selectedCategory]);
 
   const handleClick = () => {

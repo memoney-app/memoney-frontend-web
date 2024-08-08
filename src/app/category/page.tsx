@@ -76,6 +76,7 @@ const Home: React.FC = () => {
           eventName={event.name}
           income={event.income}
           outcome={event.outcome}
+          selectedCategory={selectedCategory}
         />
       ))}
       <BottomNav />

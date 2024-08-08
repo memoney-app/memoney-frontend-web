@@ -43,7 +43,7 @@ globalStyle(".sizeUp_Animation", {
 });
 
 globalStyle(".sizeDown_Animation", {
-  animation: `${sizeDown} 0.5s forwards, ${fadeOut} 0.25s forwards`,
+  animation: `${sizeDown} 0.5s forwards, ${fadeOut} 0.3s forwards`,
 });
 
 globalStyle(".Event_Container", {
@@ -66,7 +66,7 @@ globalStyle(".outcome_alone", {
 });
 
 globalStyle(".overlapping_text", {
-  height: "20px",
+  minHeight: "20px",
   overflow: "visible",
   whiteSpace: "nowrap",
 });
