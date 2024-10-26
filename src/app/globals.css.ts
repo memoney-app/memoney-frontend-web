@@ -21,11 +21,15 @@ globalStyle("a:hover", {
 globalStyle(".main", {
   backgroundColor: "#f5f5f5",
   paddingTop: "64px",
-  paddingBottom: "24px",
-  margin: "0 auto 48px auto", // Center the main container
-  maxWidth: "800px", // Limit the width to a typical mobile screen width
-  minHeight: "100vh",
+  paddingBottom: "72px",
+  margin: "0 auto 0 auto",
+  maxWidth: "800px",
+  minHeight: "calc(100vh - 136px)",
   overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
 });
 globalStyle("::-webkit-scrollbar", {
   display: "none",

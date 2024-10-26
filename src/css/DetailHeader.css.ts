@@ -5,6 +5,7 @@ export const DetailHeader = style({
   alignItems: "center",
   width: "auto",
   padding: "0px 5% 33px 5%",
+  marginRight: "auto",
 });
 
 export const DetailHeader_Back = style({

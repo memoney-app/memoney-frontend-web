@@ -1,12 +1,13 @@
 import Link from "next/link";
+import * as styles from "../css/Mainpage.css";
 
 export default function Home() {
   return (
     <div className="main">
-      <p>Get started by editing</p>
-      <br />
-      <div>로고</div>
-      <Link href="/category">구글 로그인</Link>
+      <div className={styles.MainLogo}>memoney</div>
+      <div>
+        <Link href="/category">구글 로그인</Link>
+      </div>
     </div>
   );
 }

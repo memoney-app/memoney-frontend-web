@@ -3,6 +3,7 @@ import { style } from "@vanilla-extract/css";
 export const Header = style({
   width: "auto",
   padding: "0px 5% 33px 5%",
+  marginRight: "auto",
   fontSize: "32px",
   fontWeight: "900",
   letterSpacing: "-2px", // 글자 간격 설정
