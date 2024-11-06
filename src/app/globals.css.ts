@@ -21,10 +21,10 @@ globalStyle("a:hover", {
 globalStyle(".main", {
   backgroundColor: "#f5f5f5",
   paddingTop: "64px",
-  paddingBottom: "72px",
+  paddingBottom: "84px",
   margin: "0 auto 0 auto",
   maxWidth: "800px",
-  minHeight: "calc(100vh - 136px)",
+  minHeight: "calc(100vh - 148px)",
   overflow: "hidden",
   display: "flex",
   flexDirection: "column",

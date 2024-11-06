@@ -14,6 +14,7 @@ interface EventContainerProps {
   outcome: number;
   relation?: string;
   selectedCategory: string;
+  link: string;
 }
 
 const EventContainer: React.FC<EventContainerProps> = ({
@@ -22,6 +23,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
   outcome,
   relation,
   selectedCategory,
+  link,
 }) => {
   const router = useRouter();
   const [prevCategory, setPrevClass] = useState("전체");
@@ -69,7 +71,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
   }, [selectedCategory]);
 
   const handleClick = () => {
-    router.push(`/category/${eventName}`);
+    router.push(link);
   };
 
   // 금액을 3자리마다 콤마(,) 표시하는 함수
@@ -100,7 +102,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
   //     : `${styles.Event_outcome} outcome_alone`;
 
   return (
-    <div className="Event_Container" onClick={handleClick}>
+    <div className="Event_Container">
       <div className={styles.Event_Container_element}>
         {renderImage()}
         <div className={styles.Event_Container_eventName}>{eventName}</div>
@@ -117,7 +119,7 @@ const EventContainer: React.FC<EventContainerProps> = ({
             나간 금액: ₩ {formatCurrency(outcome)}
           </div>
         </div>
-        <div>더보기</div>
+        <div onClick={handleClick}>더보기</div>
       </div>
     </div>
   );

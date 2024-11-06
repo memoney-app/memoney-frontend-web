@@ -46,7 +46,10 @@ const Home: React.FC = () => {
     <div className="main">
       <LogoHeader />
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
-      <GraphComponent data={initialEvents} />
+      <div style={{ width: "100%" }}>
+        <GraphComponent data={initialEvents} />
+      </div>
+
       <div className={styles.Home_Title}>{selectedCategory}</div>
       <div className={styles.main_select_container}>
         <SelectButton
@@ -77,6 +80,7 @@ const Home: React.FC = () => {
           income={event.income}
           outcome={event.outcome}
           selectedCategory={selectedCategory}
+          link={`/category/${event.name}`}
         />
       ))}
       <BottomNav />

@@ -168,6 +168,7 @@ export default function Category(props: any) {
           outcome={event.outcome}
           selectedCategory={selectedCategory}
           relation={event.relation}
+          link={`/category/${currentCategory}/${event.name}`}
         />
       ))}
       <BottomNav />

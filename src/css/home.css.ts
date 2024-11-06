@@ -9,8 +9,7 @@ export const Home_Title = style({
 
 export const main_select_container = style({
   display: "flex",
-  margin: "0 auto",
+  margin: "24px auto 12px auto",
   alignItems: "center",
   width: "90%",
-  marginTop: "24px",
 });

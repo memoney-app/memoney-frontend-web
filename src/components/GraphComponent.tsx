@@ -65,7 +65,11 @@ const GraphComponent: React.FC<GraphComponentProps> = ({ data }) => {
     },
   };
 
-  return <Line data={chartData} options={options} />;
+  return (
+    <div style={{ width: "calc(100% - 40px)", margin: "0 auto" }}>
+      <Line data={chartData} options={options} />
+    </div>
+  );
 };
 
 export default GraphComponent;

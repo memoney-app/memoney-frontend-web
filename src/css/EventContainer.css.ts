@@ -49,7 +49,7 @@ globalStyle(".sizeDown_Animation", {
 globalStyle(".Event_Container", {
   backgroundColor: "#ffffff",
   width: "calc(90% - 32px)",
-  margin: "24px auto",
+  margin: "12px auto",
   padding: "16px",
   borderRadius: "16px",
 });
