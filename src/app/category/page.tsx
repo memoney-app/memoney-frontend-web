@@ -46,7 +46,7 @@ const Home: React.FC = () => {
     <div className="main">
       <LogoHeader />
       <SearchBar initialEvents={initialEvents} onSearch={setEvents} />
-      <div style={{ width: "100%" }}>
+      <div className={styles.Main_Graph_Container}>
         <GraphComponent data={initialEvents} />
       </div>
 

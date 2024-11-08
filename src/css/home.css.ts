@@ -13,3 +13,8 @@ export const main_select_container = style({
   alignItems: "center",
   width: "90%",
 });
+
+export const Main_Graph_Container = style({
+  width: "90%",
+  marginTop: "20px",
+});

@@ -38,13 +38,13 @@ const GraphComponent: React.FC<GraphComponentProps> = ({ data }) => {
     labels,
     datasets: [
       {
-        label: "Income",
+        label: "수입",
         data: incomeData,
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
       },
       {
-        label: "Outcome",
+        label: "지출",
         data: outcomeData,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -58,15 +58,15 @@ const GraphComponent: React.FC<GraphComponentProps> = ({ data }) => {
       legend: {
         position: "top" as const,
       },
-      title: {
-        display: true,
-        text: "Income and Outcome Over Time",
-      },
+      // title: {
+      //   display: true,
+      //   text: "Income and Outcome Over Time",
+      // },
     },
   };
 
   return (
-    <div style={{ width: "calc(100% - 40px)", margin: "0 auto" }}>
+    <div style={{ width: "100%", maxHeight: "400px" }}>
       <Line data={chartData} options={options} />
     </div>
   );

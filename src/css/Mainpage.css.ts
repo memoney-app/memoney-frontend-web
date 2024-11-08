@@ -12,4 +12,23 @@ export const MainLogo = style({
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   display: "inline-block",
+
+  // 기본 스타일 (주로 데스크탑)
+  "@media": {
+    // 모바일 화면 (최대 너비 768px)
+    "screen and (max-width: 768px)": {
+      fontSize: "18vw", // 모바일에서 더 작게
+      top: "15%", // 위치 약간 조정
+    },
+    // 태블릿 화면 (768px ~ 1024px)
+    "screen and (min-width: 769px) and (max-width: 1024px)": {
+      fontSize: "15vw", // 태블릿 크기 조정
+      top: "12%", // 위치 조정
+    },
+    // 데스크탑 화면 (1024px 이상)
+    "screen and (min-width: 1025px)": {
+      fontSize: "10vw", // 데스크탑에서 적절한 크기
+      top: "10%", // 위치 조정
+    },
+  },
 });
