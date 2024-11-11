@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import exp from "constants";
 
 export const Event_Detail_Close = style({
   padding: "0  0 0 auto",
@@ -16,7 +17,6 @@ export const UnderlineInput = style({
   fontSize: "36px",
   padding: "4px 0",
   backgroundColor: "transparent",
-  width: "100px", // 필요에 따라 조정
   "::placeholder": {
     color: "#ccc",
   },
@@ -52,4 +52,34 @@ export const Event_Detail_Devider = style({
   height: "1px",
   marginLeft: "5%",
   backgroundColor: "#d9d9d9",
+});
+
+export const Event_Detail_Button = style({
+  padding: "12px 16px",
+  border: "1px solid #757575",
+  marginRight: "8px",
+  borderRadius: "100px",
+  color: "#757575",
+  cursor: "pointer",
+  transition: "all 0.2s ease-in-out",
+});
+
+export const Active_Button = style({
+  border: "1px solid #3D5AFE", // 활성화된 테두리 색상
+  color: "#3D5AFE", // 활성화된 글자 색상
+});
+
+export const Event_Detail_Submit = style({
+  backgroundColor: "#3D5AFE",
+
+  color: "#ffffff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "90%",
+  margin: "24px 5% 0 5%",
+  height: "56px",
+  fontSize: "20px",
+  fontWeight: "bold",
+  borderRadius: "16px",
 });
